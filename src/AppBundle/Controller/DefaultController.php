@@ -30,9 +30,11 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $plats = $em->getRepository('AppBundle:Plat')->findAll();
+        $categories = $em->getRepository('AppBundle:Categorie')->findAll();
 
         return $this->render('menu.html.twig', array(
             'plats' => $plats,
+            'categories' => $categories,
         ));
     }
 }
