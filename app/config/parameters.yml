@@ -5,9 +5,12 @@ parameters:
     database_name: tupmylunch
     database_user: dylan
     database_password: Jmfxzb9v
+
+
     mailer_transport: smtp
     mailer_host: ns0.ovh.net
-    mailer_port: 587
     mailer_user: contact@skykeys.fr
-    mailer_password: Jmfxzb9v
+    mailer_password: Jmfxzb9v874456
+
+
     secret: ThisTokenIsNotSoSecretChangeIt
