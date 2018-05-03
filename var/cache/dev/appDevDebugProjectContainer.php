@@ -1,10 +1,11 @@
 <?php
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Exception\LogicException;
+use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
 /**
@@ -29,14 +30,17 @@ class appDevDebugProjectContainer extends Container
         $this->services = array();
         $this->normalizedIds = array(
             'appbundle\\controller\\annuairecontroller' => 'AppBundle\\Controller\\AnnuaireController',
+            'appbundle\\controller\\categoriecontroller' => 'AppBundle\\Controller\\CategorieController',
             'appbundle\\controller\\commentairecontroller' => 'AppBundle\\Controller\\CommentaireController',
             'appbundle\\controller\\defaultcontroller' => 'AppBundle\\Controller\\DefaultController',
             'appbundle\\controller\\platcontroller' => 'AppBundle\\Controller\\PlatController',
             'appbundle\\controller\\securitycontroller' => 'AppBundle\\Controller\\SecurityController',
             'appbundle\\controller\\usercontroller' => 'AppBundle\\Controller\\UserController',
+            'appbundle\\form\\categorietype' => 'AppBundle\\Form\\CategorieType',
             'appbundle\\form\\commentairetype' => 'AppBundle\\Form\\CommentaireType',
             'appbundle\\form\\plattype' => 'AppBundle\\Form\\PlatType',
             'appbundle\\form\\registrationtype' => 'AppBundle\\Form\\RegistrationType',
+            'autowired.appbundle\\entity\\categorie' => 'autowired.AppBundle\\Entity\\Categorie',
             'autowired.appbundle\\entity\\commentaire' => 'autowired.AppBundle\\Entity\\Commentaire',
             'autowired.appbundle\\entity\\plat' => 'autowired.AppBundle\\Entity\\Plat',
             'autowired.appbundle\\entity\\user' => 'autowired.AppBundle\\Entity\\User',
@@ -45,11 +49,13 @@ class appDevDebugProjectContainer extends Container
             '1_46dee7b05f21f170d137c5121d8f8b81f7af3a19d7117847f9bd989819d93eaa' => 'get146dee7b05f21f170d137c5121d8f8b81f7af3a19d7117847f9bd989819d93eaaService',
             '2_46dee7b05f21f170d137c5121d8f8b81f7af3a19d7117847f9bd989819d93eaa' => 'get246dee7b05f21f170d137c5121d8f8b81f7af3a19d7117847f9bd989819d93eaaService',
             'AppBundle\\Controller\\AnnuaireController' => 'getAppBundle_Controller_AnnuaireControllerService',
+            'AppBundle\\Controller\\CategorieController' => 'getAppBundle_Controller_CategorieControllerService',
             'AppBundle\\Controller\\CommentaireController' => 'getAppBundle_Controller_CommentaireControllerService',
             'AppBundle\\Controller\\DefaultController' => 'getAppBundle_Controller_DefaultControllerService',
             'AppBundle\\Controller\\PlatController' => 'getAppBundle_Controller_PlatControllerService',
             'AppBundle\\Controller\\SecurityController' => 'getAppBundle_Controller_SecurityControllerService',
             'AppBundle\\Controller\\UserController' => 'getAppBundle_Controller_UserControllerService',
+            'AppBundle\\Form\\CategorieType' => 'getAppBundle_Form_CategorieTypeService',
             'AppBundle\\Form\\CommentaireType' => 'getAppBundle_Form_CommentaireTypeService',
             'AppBundle\\Form\\PlatType' => 'getAppBundle_Form_PlatTypeService',
             'AppBundle\\Form\\RegistrationType' => 'getAppBundle_Form_RegistrationTypeService',
@@ -64,6 +70,7 @@ class appDevDebugProjectContainer extends Container
             'argument_resolver.variadic' => 'getArgumentResolver_VariadicService',
             'assets.context' => 'getAssets_ContextService',
             'assets.packages' => 'getAssets_PackagesService',
+            'autowired.AppBundle\\Entity\\Categorie' => 'getAutowired_AppBundle_Entity_CategorieService',
             'autowired.AppBundle\\Entity\\Commentaire' => 'getAutowired_AppBundle_Entity_CommentaireService',
             'autowired.AppBundle\\Entity\\Plat' => 'getAutowired_AppBundle_Entity_PlatService',
             'autowired.AppBundle\\Entity\\User' => 'getAutowired_AppBundle_Entity_UserService',
@@ -316,6 +323,8 @@ class appDevDebugProjectContainer extends Container
             'service_locator.36cb63d4cfd1916d2214c90f093a98ee' => 'getServiceLocator_36cb63d4cfd1916d2214c90f093a98eeService',
             'service_locator.61c4bc70092b00e9393797dce8125338' => 'getServiceLocator_61c4bc70092b00e9393797dce8125338Service',
             'service_locator.844b489ed677153b4d2180d2ae12e278' => 'getServiceLocator_844b489ed677153b4d2180d2ae12e278Service',
+            'service_locator.9a7284b756ce90b7e5dcba14a12c2e0f' => 'getServiceLocator_9a7284b756ce90b7e5dcba14a12c2e0fService',
+            'service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2' => 'getServiceLocator_Bf1c0f4375f3cc7b2743ed3c9b696fc2Service',
             'service_locator.cc2b70dfe28c491d5d4736dc8913e9ae' => 'getServiceLocator_Cc2b70dfe28c491d5d4736dc8913e9aeService',
             'session' => 'getSessionService',
             'session.handler' => 'getSession_HandlerService',
@@ -394,6 +403,7 @@ class appDevDebugProjectContainer extends Container
         $this->privates = array(
             '1_46dee7b05f21f170d137c5121d8f8b81f7af3a19d7117847f9bd989819d93eaa' => true,
             '2_46dee7b05f21f170d137c5121d8f8b81f7af3a19d7117847f9bd989819d93eaa' => true,
+            'AppBundle\\Form\\CategorieType' => true,
             'AppBundle\\Form\\CommentaireType' => true,
             'AppBundle\\Form\\PlatType' => true,
             'AppBundle\\Form\\RegistrationType' => true,
@@ -405,6 +415,7 @@ class appDevDebugProjectContainer extends Container
             'argument_resolver.service' => true,
             'argument_resolver.session' => true,
             'argument_resolver.variadic' => true,
+            'autowired.AppBundle\\Entity\\Categorie' => true,
             'autowired.AppBundle\\Entity\\Commentaire' => true,
             'autowired.AppBundle\\Entity\\Plat' => true,
             'autowired.AppBundle\\Entity\\User' => true,
@@ -459,6 +470,8 @@ class appDevDebugProjectContainer extends Container
             'service_locator.36cb63d4cfd1916d2214c90f093a98ee' => true,
             'service_locator.61c4bc70092b00e9393797dce8125338' => true,
             'service_locator.844b489ed677153b4d2180d2ae12e278' => true,
+            'service_locator.9a7284b756ce90b7e5dcba14a12c2e0f' => true,
+            'service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2' => true,
             'service_locator.cc2b70dfe28c491d5d4736dc8913e9ae' => true,
             'session.storage.metadata_bag' => true,
             'swiftmailer.mailer.default.transport.eventdispatcher' => true,
@@ -522,6 +535,16 @@ class appDevDebugProjectContainer extends Container
     protected function getAppBundle_Controller_AnnuaireControllerService()
     {
         return $this->services['AppBundle\Controller\AnnuaireController'] = new \AppBundle\Controller\AnnuaireController();
+    }
+
+    /**
+     * Gets the public 'AppBundle\Controller\CategorieController' shared autowired service.
+     *
+     * @return \AppBundle\Controller\CategorieController
+     */
+    protected function getAppBundle_Controller_CategorieControllerService()
+    {
+        return $this->services['AppBundle\Controller\CategorieController'] = new \AppBundle\Controller\CategorieController();
     }
 
     /**
@@ -1554,6 +1577,8 @@ class appDevDebugProjectContainer extends Container
             return ${($_ = isset($this->services['pugx_autocompleter.autocomplete']) ? $this->services['pugx_autocompleter.autocomplete'] : $this->get('pugx_autocompleter.autocomplete')) && false ?: '_'};
         }, 'PUGX\\AutocompleterBundle\\Form\\Type\\AutocompleteFilterType' => function () {
             return ${($_ = isset($this->services['pugx_autocompleter.filter_autocomplete']) ? $this->services['pugx_autocompleter.filter_autocomplete'] : $this->get('pugx_autocompleter.filter_autocomplete')) && false ?: '_'};
+        }, 'AppBundle\\Form\\CategorieType' => function () {
+            return ${($_ = isset($this->services['AppBundle\Form\CategorieType']) ? $this->services['AppBundle\Form\CategorieType'] : $this->getAppBundle_Form_CategorieTypeService()) && false ?: '_'};
         }, 'AppBundle\\Form\\CommentaireType' => function () {
             return ${($_ = isset($this->services['AppBundle\Form\CommentaireType']) ? $this->services['AppBundle\Form\CommentaireType'] : $this->getAppBundle_Form_CommentaireTypeService()) && false ?: '_'};
         }, 'AppBundle\\Form\\PlatType' => function () {
@@ -3080,7 +3105,7 @@ class appDevDebugProjectContainer extends Container
         $s->setResourceOwnerMap(${($_ = isset($this->services['hwi_oauth.resource_ownermap.main']) ? $this->services['hwi_oauth.resource_ownermap.main'] : $this->get('hwi_oauth.resource_ownermap.main')) && false ?: '_'});
         $s->setCheckPaths(array(0 => '/login/check-facebook', 1 => '/login/check-google'));
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($m, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => new \Symfony\Component\Security\Core\User\InMemoryUserProvider(array()), 1 => ${($_ = isset($this->services['fos_user.user_provider.username']) ? $this->services['fos_user.user_provider.username'] : $this->getFosUser_UserProvider_UsernameService()) && false ?: '_'}), 'main', $a, $c, $d), 2 => $n, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $g, $h, $e, 'main', $o, $p, array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $a, $c, NULL), 4 => $s, 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '5ac64c0736bf99.30789576', $a, $g), 6 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, ${($_ = isset($this->services['debug.security.access.decision_manager']) ? $this->services['debug.security.access.decision_manager'] : $this->getDebug_Security_Access_DecisionManagerService()) && false ?: '_'}, $m, $g)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $d, $e, 'main', new \HWI\Bundle\OAuthBundle\Security\Http\EntryPoint\OAuthEntryPoint($f, $e, '/login', false), NULL, NULL, $a, false), new \Symfony\Bundle\SecurityBundle\Security\FirewallConfig('main', 'security.user_checker', 'security.request_matcher.a64d671f18e5575531d76c1d1154fdc4476cb8a79c02ed7a3469178c6d7b96b5ed4e60db', true, false, 'security.user.provider.concrete.in_memory', 'main', 'hwi_oauth.authentication.entry_point.oauth.main', NULL, NULL, array(0 => 'logout', 1 => 'form_login', 2 => 'oauth', 3 => 'anonymous')));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($m, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => new \Symfony\Component\Security\Core\User\InMemoryUserProvider(array()), 1 => ${($_ = isset($this->services['fos_user.user_provider.username']) ? $this->services['fos_user.user_provider.username'] : $this->getFosUser_UserProvider_UsernameService()) && false ?: '_'}), 'main', $a, $c, $d), 2 => $n, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $g, $h, $e, 'main', $o, $p, array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $a, $c, NULL), 4 => $s, 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '5ae8de5d004aa3.05916145', $a, $g), 6 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, ${($_ = isset($this->services['debug.security.access.decision_manager']) ? $this->services['debug.security.access.decision_manager'] : $this->getDebug_Security_Access_DecisionManagerService()) && false ?: '_'}, $m, $g)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $d, $e, 'main', new \HWI\Bundle\OAuthBundle\Security\Http\EntryPoint\OAuthEntryPoint($f, $e, '/login', false), NULL, NULL, $a, false), new \Symfony\Bundle\SecurityBundle\Security\FirewallConfig('main', 'security.user_checker', 'security.request_matcher.a64d671f18e5575531d76c1d1154fdc4476cb8a79c02ed7a3469178c6d7b96b5ed4e60db', true, false, 'security.user.provider.concrete.in_memory', 'main', 'hwi_oauth.authentication.entry_point.oauth.main', NULL, NULL, array(0 => 'logout', 1 => 'form_login', 2 => 'oauth', 3 => 'anonymous')));
     }
 
     /**
@@ -4126,6 +4151,16 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the private 'AppBundle\Form\CategorieType' shared autowired service.
+     *
+     * @return \AppBundle\Form\CategorieType
+     */
+    protected function getAppBundle_Form_CategorieTypeService()
+    {
+        return $this->services['AppBundle\Form\CategorieType'] = new \AppBundle\Form\CategorieType();
+    }
+
+    /**
      * Gets the private 'AppBundle\Form\CommentaireType' shared autowired service.
      *
      * @return \AppBundle\Form\CommentaireType
@@ -4219,7 +4254,13 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getArgumentResolver_ServiceService()
     {
-        return $this->services['argument_resolver.service'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver(new \Symfony\Component\DependencyInjection\ServiceLocator(array('AppBundle\\Controller\\CommentaireController:deleteAction' => function () {
+        return $this->services['argument_resolver.service'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver(new \Symfony\Component\DependencyInjection\ServiceLocator(array('AppBundle\\Controller\\CategorieController:deleteAction' => function () {
+            return ${($_ = isset($this->services['service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2']) ? $this->services['service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2'] : $this->getServiceLocator_Bf1c0f4375f3cc7b2743ed3c9b696fc2Service()) && false ?: '_'};
+        }, 'AppBundle\\Controller\\CategorieController:editAction' => function () {
+            return ${($_ = isset($this->services['service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2']) ? $this->services['service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2'] : $this->getServiceLocator_Bf1c0f4375f3cc7b2743ed3c9b696fc2Service()) && false ?: '_'};
+        }, 'AppBundle\\Controller\\CategorieController:showAction' => function () {
+            return ${($_ = isset($this->services['service_locator.9a7284b756ce90b7e5dcba14a12c2e0f']) ? $this->services['service_locator.9a7284b756ce90b7e5dcba14a12c2e0f'] : $this->getServiceLocator_9a7284b756ce90b7e5dcba14a12c2e0fService()) && false ?: '_'};
+        }, 'AppBundle\\Controller\\CommentaireController:deleteAction' => function () {
             return ${($_ = isset($this->services['service_locator.288d45bfd4622ef2a852a4e154d96eeb']) ? $this->services['service_locator.288d45bfd4622ef2a852a4e154d96eeb'] : $this->getServiceLocator_288d45bfd4622ef2a852a4e154d96eebService()) && false ?: '_'};
         }, 'AppBundle\\Controller\\CommentaireController:editAction' => function () {
             return ${($_ = isset($this->services['service_locator.288d45bfd4622ef2a852a4e154d96eeb']) ? $this->services['service_locator.288d45bfd4622ef2a852a4e154d96eeb'] : $this->getServiceLocator_288d45bfd4622ef2a852a4e154d96eebService()) && false ?: '_'};
@@ -4239,6 +4280,12 @@ class appDevDebugProjectContainer extends Container
             return ${($_ = isset($this->services['service_locator.10796b88c68424705b2cc3e11c010dbe']) ? $this->services['service_locator.10796b88c68424705b2cc3e11c010dbe'] : $this->getServiceLocator_10796b88c68424705b2cc3e11c010dbeService()) && false ?: '_'};
         }, 'AppBundle\\Controller\\UserController:showAction' => function () {
             return ${($_ = isset($this->services['service_locator.61c4bc70092b00e9393797dce8125338']) ? $this->services['service_locator.61c4bc70092b00e9393797dce8125338'] : $this->getServiceLocator_61c4bc70092b00e9393797dce8125338Service()) && false ?: '_'};
+        }, 'AppBundle\\Controller\\CategorieController::deleteAction' => function () {
+            return ${($_ = isset($this->services['service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2']) ? $this->services['service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2'] : $this->getServiceLocator_Bf1c0f4375f3cc7b2743ed3c9b696fc2Service()) && false ?: '_'};
+        }, 'AppBundle\\Controller\\CategorieController::editAction' => function () {
+            return ${($_ = isset($this->services['service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2']) ? $this->services['service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2'] : $this->getServiceLocator_Bf1c0f4375f3cc7b2743ed3c9b696fc2Service()) && false ?: '_'};
+        }, 'AppBundle\\Controller\\CategorieController::showAction' => function () {
+            return ${($_ = isset($this->services['service_locator.9a7284b756ce90b7e5dcba14a12c2e0f']) ? $this->services['service_locator.9a7284b756ce90b7e5dcba14a12c2e0f'] : $this->getServiceLocator_9a7284b756ce90b7e5dcba14a12c2e0fService()) && false ?: '_'};
         }, 'AppBundle\\Controller\\CommentaireController::deleteAction' => function () {
             return ${($_ = isset($this->services['service_locator.288d45bfd4622ef2a852a4e154d96eeb']) ? $this->services['service_locator.288d45bfd4622ef2a852a4e154d96eeb'] : $this->getServiceLocator_288d45bfd4622ef2a852a4e154d96eebService()) && false ?: '_'};
         }, 'AppBundle\\Controller\\CommentaireController::editAction' => function () {
@@ -4280,6 +4327,16 @@ class appDevDebugProjectContainer extends Container
     protected function getArgumentResolver_VariadicService()
     {
         return $this->services['argument_resolver.variadic'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver();
+    }
+
+    /**
+     * Gets the private 'autowired.AppBundle\Entity\Categorie' shared autowired service.
+     *
+     * @return \AppBundle\Entity\Categorie
+     */
+    protected function getAutowired_AppBundle_Entity_CategorieService()
+    {
+        return $this->services['autowired.AppBundle\Entity\Categorie'] = new \AppBundle\Entity\Categorie();
     }
 
     /**
@@ -4329,7 +4386,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_Annotations_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.annotations.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('f8uplM9akx', 0, 'BNnsc6gLXUoUu6nWCORMzK', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.annotations.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('f8uplM9akx', 0, 'SWwkNGllwPrMylOQ58Wuxm', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -4355,7 +4412,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_Serializer_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.serializer.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('zGULP67RiQ', 0, 'BNnsc6gLXUoUu6nWCORMzK', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.serializer.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('zGULP67RiQ', 0, 'SWwkNGllwPrMylOQ58Wuxm', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -4365,7 +4422,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_System_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.system.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('SYCKkrNxZo', 0, 'BNnsc6gLXUoUu6nWCORMzK', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.system.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('SYCKkrNxZo', 0, 'SWwkNGllwPrMylOQ58Wuxm', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -4385,7 +4442,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_Validator_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.validator.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('1h7xtLWmnZ', 0, 'BNnsc6gLXUoUu6nWCORMzK', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.validator.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('1h7xtLWmnZ', 0, 'SWwkNGllwPrMylOQ58Wuxm', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -4689,7 +4746,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_Provider_Anonymous_MainService()
     {
-        return $this->services['security.authentication.provider.anonymous.main'] = new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5ac64c0736bf99.30789576');
+        return $this->services['security.authentication.provider.anonymous.main'] = new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5ae8de5d004aa3.05916145');
     }
 
     /**
@@ -4862,6 +4919,30 @@ class appDevDebugProjectContainer extends Container
     {
         return $this->services['service_locator.844b489ed677153b4d2180d2ae12e278'] = new \Symfony\Component\DependencyInjection\ServiceLocator(array('plat' => function () {
             $f = function (\AppBundle\Entity\Plat $v) { return $v; }; return $f(${($_ = isset($this->services['autowired.AppBundle\Entity\Plat']) ? $this->services['autowired.AppBundle\Entity\Plat'] : $this->getAutowired_AppBundle_Entity_PlatService()) && false ?: '_'});
+        }));
+    }
+
+    /**
+     * Gets the private 'service_locator.9a7284b756ce90b7e5dcba14a12c2e0f' shared service.
+     *
+     * @return \Symfony\Component\DependencyInjection\ServiceLocator
+     */
+    protected function getServiceLocator_9a7284b756ce90b7e5dcba14a12c2e0fService()
+    {
+        return $this->services['service_locator.9a7284b756ce90b7e5dcba14a12c2e0f'] = new \Symfony\Component\DependencyInjection\ServiceLocator(array('categorie' => function () {
+            $f = function (\AppBundle\Entity\Categorie $v) { return $v; }; return $f(${($_ = isset($this->services['autowired.AppBundle\Entity\Categorie']) ? $this->services['autowired.AppBundle\Entity\Categorie'] : $this->getAutowired_AppBundle_Entity_CategorieService()) && false ?: '_'});
+        }));
+    }
+
+    /**
+     * Gets the private 'service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2' shared service.
+     *
+     * @return \Symfony\Component\DependencyInjection\ServiceLocator
+     */
+    protected function getServiceLocator_Bf1c0f4375f3cc7b2743ed3c9b696fc2Service()
+    {
+        return $this->services['service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2'] = new \Symfony\Component\DependencyInjection\ServiceLocator(array('categorie' => function () {
+            $f = function (\AppBundle\Entity\Categorie $v) { return $v; }; return $f(${($_ = isset($this->services['autowired.AppBundle\Entity\Categorie']) ? $this->services['autowired.AppBundle\Entity\Categorie'] : $this->getAutowired_AppBundle_Entity_CategorieService()) && false ?: '_'});
         }));
     }
 

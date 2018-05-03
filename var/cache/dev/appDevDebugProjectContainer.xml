@@ -624,6 +624,9 @@
     <service id="AppBundle\Controller\AnnuaireController" class="AppBundle\Controller\AnnuaireController" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
+    <service id="AppBundle\Controller\CategorieController" class="AppBundle\Controller\CategorieController" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+    </service>
     <service id="AppBundle\Controller\CommentaireController" class="AppBundle\Controller\CommentaireController" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
@@ -641,6 +644,9 @@
     </service>
     <service id="AppBundle\EventListener\ImageUploadListener" class="AppBundle\EventListener\ImageUploadListener" public="false" autowire="true" autoconfigure="true">
       <argument type="service" id="AppBundle\ImageUpload"/>
+    </service>
+    <service id="AppBundle\Form\CategorieType" class="AppBundle\Form\CategorieType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
     </service>
     <service id="AppBundle\Form\CommentaireType" class="AppBundle\Form\CommentaireType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
@@ -692,7 +698,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-50"/>
-      <argument type="service" id="service_locator.c8ddb233fb013822e16256e028397f31"/>
+      <argument type="service" id="service_locator.03affdf9f5b0fca2604da5602157bdc8"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-100"/>
@@ -838,7 +844,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>BNnsc6gLXUoUu6nWCORMzK</argument>
+      <argument>SWwkNGllwPrMylOQ58Wuxm</argument>
       <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -848,7 +854,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>BNnsc6gLXUoUu6nWCORMzK</argument>
+      <argument>SWwkNGllwPrMylOQ58Wuxm</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -964,7 +970,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id="service_locator.c01e0f4676237b4978a805015867c252"/>
+      <argument type="service" id="service_locator.52b51bc6ff4318a175758a7751cdda7a"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.http_foundation"/>
@@ -3359,12 +3365,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>5ac64c0736bf99.30789576</argument>
+      <argument>5ae8de5d004aa3.05916145</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>5ac64c0736bf99.30789576</argument>
+      <argument>5ae8de5d004aa3.05916145</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -4897,6 +4903,8 @@
     </service>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\AnnuaireController" class="AppBundle\Controller\AnnuaireController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\AnnuaireController" class="AppBundle\Controller\AnnuaireController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\CategorieController" class="AppBundle\Controller\CategorieController" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Controller\CategorieController" class="AppBundle\Controller\CategorieController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\CommentaireController" class="AppBundle\Controller\CommentaireController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\CommentaireController" class="AppBundle\Controller\CommentaireController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\DefaultController" class="AppBundle\Controller\DefaultController" autowire="true" abstract="true"/>
@@ -4907,6 +4915,8 @@
     <service id="abstract.instanceof.AppBundle\Controller\SecurityController" class="AppBundle\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\UserController" class="AppBundle\Controller\UserController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\UserController" class="AppBundle\Controller\UserController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\CategorieType" class="AppBundle\Form\CategorieType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\CategorieType" class="AppBundle\Form\CategorieType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\CommentaireType" class="AppBundle\Form\CommentaireType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\CommentaireType" class="AppBundle\Form\CommentaireType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\PlatType" class="AppBundle\Form\PlatType" public="false" autowire="true" abstract="true"/>
@@ -4919,6 +4929,22 @@
     <service id="service_locator.9ca2041958536d6647e29b9c9e4536eb" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
+    </service>
+    <service id="service_locator.14a9ca3cfe6a7b0f0288226b7b25e7b9" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
+    </service>
+    <service id="service_locator.9a7284b756ce90b7e5dcba14a12c2e0f" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="categorie" type="service" id="autowired.AppBundle\Entity\Categorie"/>
+      </argument>
+    </service>
+    <service id="service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="categorie" type="service" id="autowired.AppBundle\Entity\Categorie"/>
+      </argument>
     </service>
     <service id="service_locator.a43a97555ac0177ba3fc86ee93d61958" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
@@ -4966,9 +4992,12 @@
         <argument key="user" type="service" id="autowired.AppBundle\Entity\User"/>
       </argument>
     </service>
-    <service id="service_locator.c8ddb233fb013822e16256e028397f31" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.03affdf9f5b0fca2604da5602157bdc8" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="AppBundle\Controller\CategorieController:deleteAction" type="service" id="service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2"/>
+        <argument key="AppBundle\Controller\CategorieController:editAction" type="service" id="service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2"/>
+        <argument key="AppBundle\Controller\CategorieController:showAction" type="service" id="service_locator.9a7284b756ce90b7e5dcba14a12c2e0f"/>
         <argument key="AppBundle\Controller\CommentaireController:deleteAction" type="service" id="service_locator.288d45bfd4622ef2a852a4e154d96eeb"/>
         <argument key="AppBundle\Controller\CommentaireController:editAction" type="service" id="service_locator.288d45bfd4622ef2a852a4e154d96eeb"/>
         <argument key="AppBundle\Controller\CommentaireController:showAction" type="service" id="service_locator.36cb63d4cfd1916d2214c90f093a98ee"/>
@@ -4979,6 +5008,9 @@
         <argument key="AppBundle\Controller\PlatController:reserveAction" type="service" id="service_locator.10796b88c68424705b2cc3e11c010dbe"/>
         <argument key="AppBundle\Controller\PlatController:showAction" type="service" id="service_locator.10796b88c68424705b2cc3e11c010dbe"/>
         <argument key="AppBundle\Controller\UserController:showAction" type="service" id="service_locator.61c4bc70092b00e9393797dce8125338"/>
+        <argument key="AppBundle\Controller\CategorieController::deleteAction" type="service" id="service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2"/>
+        <argument key="AppBundle\Controller\CategorieController::editAction" type="service" id="service_locator.bf1c0f4375f3cc7b2743ed3c9b696fc2"/>
+        <argument key="AppBundle\Controller\CategorieController::showAction" type="service" id="service_locator.9a7284b756ce90b7e5dcba14a12c2e0f"/>
         <argument key="AppBundle\Controller\CommentaireController::deleteAction" type="service" id="service_locator.288d45bfd4622ef2a852a4e154d96eeb"/>
         <argument key="AppBundle\Controller\CommentaireController::editAction" type="service" id="service_locator.288d45bfd4622ef2a852a4e154d96eeb"/>
         <argument key="AppBundle\Controller\CommentaireController::showAction" type="service" id="service_locator.36cb63d4cfd1916d2214c90f093a98ee"/>
@@ -5007,11 +5039,12 @@
         <argument key="translation.loader.yml" type="service" id="translation.loader.yml"/>
       </argument>
     </service>
-    <service id="service_locator.c01e0f4676237b4978a805015867c252" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.52b51bc6ff4318a175758a7751cdda7a" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="PUGX\AutocompleterBundle\Form\Type\AutocompleteType" type="service" id="pugx_autocompleter.autocomplete"/>
         <argument key="PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType" type="service" id="pugx_autocompleter.filter_autocomplete"/>
+        <argument key="AppBundle\Form\CategorieType" type="service" id="AppBundle\Form\CategorieType"/>
         <argument key="AppBundle\Form\CommentaireType" type="service" id="AppBundle\Form\CommentaireType"/>
         <argument key="AppBundle\Form\PlatType" type="service" id="AppBundle\Form\PlatType"/>
         <argument key="AppBundle\Form\RegistrationType" type="service" id="AppBundle\Form\RegistrationType"/>
@@ -5204,6 +5237,7 @@
         <argument key="twig" type="service" id="twig"/>
       </argument>
     </service>
+    <service id="autowired.AppBundle\Entity\Categorie" class="AppBundle\Entity\Categorie" public="false" autowire="true"/>
     <service id="autowired.AppBundle\Entity\Commentaire" class="AppBundle\Entity\Commentaire" public="false" autowire="true"/>
     <service id="autowired.AppBundle\Entity\Plat" class="AppBundle\Entity\Plat" public="false" autowire="true"/>
     <service id="autowired.AppBundle\Entity\User" class="AppBundle\Entity\User" public="false" autowire="true"/>
@@ -5230,7 +5264,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>SYCKkrNxZo</argument>
       <argument>0</argument>
-      <argument>BNnsc6gLXUoUu6nWCORMzK</argument>
+      <argument>SWwkNGllwPrMylOQ58Wuxm</argument>
       <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5238,7 +5272,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>1h7xtLWmnZ</argument>
       <argument>0</argument>
-      <argument>BNnsc6gLXUoUu6nWCORMzK</argument>
+      <argument>SWwkNGllwPrMylOQ58Wuxm</argument>
       <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5246,7 +5280,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>zGULP67RiQ</argument>
       <argument>0</argument>
-      <argument>BNnsc6gLXUoUu6nWCORMzK</argument>
+      <argument>SWwkNGllwPrMylOQ58Wuxm</argument>
       <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -5254,7 +5288,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>f8uplM9akx</argument>
       <argument>0</argument>
-      <argument>BNnsc6gLXUoUu6nWCORMzK</argument>
+      <argument>SWwkNGllwPrMylOQ58Wuxm</argument>
       <argument>/Users/macdedylan/PhpstormProjects/boiteamanger/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
